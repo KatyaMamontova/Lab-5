@@ -22,3 +22,26 @@ let transposedMatrix = transposeMatrix(currentMatrix);
 let matrix = (!(currentMatrix > transposedMatrix || currentMatrix < transposedMatrix)) ?
   currentMatrix : multiplyMatrices(currentMatrix, transposeMatrix(currentMatrix));
 console.log(matrix);
+let matrix = [
+  [9, 1, 1],
+  [1, 2, 2],
+  [1, 2, 3]
+]
+
+let n = matrix[0].length;
+
+let T = [[]];
+
+T[0][0] = Math.pow(matrix[0][0], 0.5);
+for(let j = 1; j < n; j++) {
+    T[0][j] = matrix[0][j] / T[0][0];
+}
+
+for(let i = 0; i < n; i++) {
+    let sum = 0;
+    for(let k = 1; k < i; k++)
+    sum += 
+    T[i][i] = Math.pow(matrix[i][i] - sum, 0.5)
+}
+
+console.log(T);
