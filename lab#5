@@ -1,10 +1,13 @@
 //node lab#5
+// k = 28; m = 9;
 
-let currentMatrix = [
-  [1, 1, 1],
-  [1, 2, 2],
-  [1, 0, 3]
-]
+let A = [
+  [18, -11, -17],
+  [-11, 86, -58],
+  [-17, -58, 266]
+];
+
+let b = [10, -17, -191];
 
 function transposeMatrix(matrix) {
   return matrix[0].map((_, colIndex) => matrix.map(row => row[colIndex]));
@@ -19,40 +22,83 @@ function multiplyMatrices(A, B) {
   })
 }
 
-let transposedMatrix = transposeMatrix(currentMatrix);
+let transposedMatrix = transposeMatrix(A);
 
-let matrix = (!(currentMatrix > transposedMatrix || currentMatrix < transposedMatrix)) ?
-  currentMatrix : multiplyMatrices(currentMatrix, transposeMatrix(currentMatrix));
-console.log(matrix);
+/* let matrix = (!(A > transposedMatrix || A < transposedMatrix)) ?
+  A : multiplyMatrices(A, transposedMatrix); */
 
-let n = matrix[0].length;
+if (A > transposedMatrix || A < transposedMatrix) {
+  A = multiplyMatrices(A, transposedMatrix);
+  //b = multiplyMatrices(transposedMatrix, b);
+}
+console.log('___A___\n', A);
+console.log('___b___\n', b);
 
-let T = [[]];
+//
+//прямой ход
+//
 
-T[0][0] = Math.pow(matrix[0][0], 0.5);
+let n = A[0].length;
+
+let T = new Array(n).fill(0).map(row => new Array(n).fill(0));
+
+T[0][0] = Math.pow(A[0][0], 0.5);
+
 for (let j = 1; j < n; j++) {
-  T[0][j] = matrix[0][j] / T[0][0];
+  T[0][j] = A[0][j] / T[0][0];
 }
 
 console.log('___1___\n', T);
 
 for (let i = 1; i < n; i++) {
-  T.push([]);
   let sum = 0;
-  for (let k = 1; k < i; k++)
+  for (let k = 0; k < i; k++)
     sum += Math.pow(T[k][i], 2)
-  T[i][i] = Math.pow(matrix[i][i] - sum, 0.5)
+  T[i][i] = Math.pow(A[i][i] - sum, 0.5)
 }
 
 console.log('___2___\n', T)
 
-for (let i = 2; i < n; i++) {
+for (let i = 1; i < n; i++) {
   for (let j = i + 1; j < n; j++) {
     let sum = 0;
-    for (let k = 1; k < i; k++)
+    for (let k = 0; k < i; k++)
       sum += T[k][i] * T[k][j];
-    T[i][j] = (matrix[i][j] - sum) / T[i][i]
+    T[i][j] = (A[i][j] - sum) / T[i][i]
   }
 }
 
 console.log('___3___\n', T)
+
+//
+//обратный ход
+//
+
+let y = new Array(n).fill(0);
+
+y[0] = b[0] / T[0][0];
+
+for (let i = 1; i < n; i++) {
+  let sum = 0;
+  for (let k = 0; k < i - 1; k++) {
+    sum += T[k][i] * y[k]
+  }
+  y[i] = (b[i] - sum) / T[i][i]
+}
+
+console.log('___y___\n', y)
+
+let x = new Array(n).fill(0);
+
+x[n - 1] = y[n - 1] / T[n - 1][n - 1];
+
+for (let i = n - 1; i > -1; i--) {
+  let sum = 0;
+  for (let k = i + 1; k < n; k++) {
+    sum += T[i][k] * x[k]
+  }
+  y[i] = (y[i] - sum) / T[i][i]
+}
+
+console.log('___x___\n', x)
+
