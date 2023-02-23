@@ -1,5 +1,5 @@
 //node lab#5
-// k = 28; m = 9;
+let k = 28; m = 9;
 
 let A = [
   /* [18, -11, -17],
@@ -8,9 +8,16 @@ let A = [
   [-4, 1, 1],
   [1, -9, 3],
   [1, 2, -16]
+  /* [12 + k, 2, m / 4, 1, 2],
+  [4, 113 + k, 1, m / 10, m - 4],
+  [1, 2, -24 - k, 3, 4],
+  [1, 2 / m, 4, 33 + k, 4],
+  [-1, 2, -3, 3 + m, -44 - k] */
 ];
 
 let b = [2, 5, 13];
+//let b = [1, 2, 3, 4, 5];
+//[10, -17, -191]
 
 let round = num => Math.round(num * 100) / 100;
 
@@ -40,11 +47,8 @@ function multiplyMatrixByVector(A, b) {
 
 let transposedMatrix = transposeMatrix(A);
 
-/* let matrix = (!(A > transposedMatrix || A < transposedMatrix)) ?
-  A : multiplyMatrices(A, transposedMatrix); */
-
 if (A > transposedMatrix || A < transposedMatrix) {
-  A = multiplyMatrices(A, transposedMatrix);
+  A = multiplyMatrices(transposedMatrix, A);
   b = multiplyMatrixByVector(transposedMatrix, b);
 }
 console.log('___A___\n', A);
@@ -64,8 +68,6 @@ for (let j = 1; j < n; j++) {
   T[0][j] = round(A[0][j] / T[0][0]);
 }
 
-console.log('___1___\n', T);
-
 for (let i = 1; i < n; i++) {
   let sum = 0;
   for (let k = 0; k < i; k++) {
@@ -80,7 +82,7 @@ for (let i = 1; i < n; i++) {
   }
 }
 
-console.log('___2___\n', T)
+console.log('___T___\n', T)
 
 //
 //обратный ход
@@ -107,9 +109,7 @@ x[n - 1] = round(y[n - 1] / T[n - 1][n - 1]);
 for (let i = n - 1; i > -1; i--) {
   let sum = 0;
   for (let k = i + 1; k < n; k++) {
-    sum += T[i][k] * x[k]/* 
-    console.log(`T[${i + 1}][${k + 1}] `, T[i][k])
-    console.log(`x[${k + 1}] `, x[k]) */
+    sum += T[i][k] * x[k]
   }
   x[i] = round((y[i] - sum) / T[i][i])
 }
