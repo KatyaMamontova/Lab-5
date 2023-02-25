@@ -1,19 +1,8 @@
 class SquareRootMethod {
-    constructor(/* matrix, vector */) {
-        // this.A = matrix;
-        // this.b = vector;
-
+    constructor() {
         this.matrOperations = new CommonMatrixOperations();
         this.round = this.matrOperations.round;
-
-        //this.transposedMatrix = this.matrOperations.transposeMatrix(this.A);
-
-        //this.n = this.A[0].length;
-        //console.log(this.solveTheEquation(this.A, this.b))
     }
-
-    /* console.log('___A___\n', A);
-    console.log('___b___\n', b); */
 
     defineMatrixT(givenMatrix) {
         let n = givenMatrix[0].length;
@@ -39,7 +28,6 @@ class SquareRootMethod {
         }
 
         return T;
-        console.log('___T___\n', T)
     }
 
     defineY(T, b) {
@@ -57,7 +45,6 @@ class SquareRootMethod {
         }
 
         return y;
-        console.log('___y___\n', y)
     }
 
     solveTheEquation(A, b) {
@@ -84,7 +71,6 @@ class SquareRootMethod {
         }
 
         return x;
-        console.log('___x___\n', x)
     }
 
     output(A, b) {
