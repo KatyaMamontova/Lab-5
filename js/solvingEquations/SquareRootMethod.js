@@ -1,6 +1,7 @@
 class SquareRootMethod {
     constructor() {
-        this.matrOperations = new CommonMatrixOperations();
+        this.matrOperations = new MatrixOperations();
+        this.vectOperations = new VectorOperations();
         this.round = this.matrOperations.round;
     }
 
@@ -32,7 +33,7 @@ class SquareRootMethod {
 
     defineY(T, b) {
         let n = T[0].length;
-        let y = new Array(n).fill(0);
+        let y = this.vectOperations.createZeroVector(n);
 
         y[0] = this.round(b[0] / T[0][0]);
 
@@ -58,7 +59,7 @@ class SquareRootMethod {
         let T = this.defineMatrixT(A);
         let y = this.defineY(T, b);
         let n = A[0].length;
-        let x = new Array(n).fill(0);
+        let x = this.vectOperations.createZeroVector(n);
 
         x[n - 1] = this.round(y[n - 1] / T[n - 1][n - 1]);
 
@@ -74,6 +75,7 @@ class SquareRootMethod {
     }
 
     output(A, b) {
+        console.log('Метод квадратного корня');
         console.log('___A___\n', A);
         console.log('___b___\n', b);
 
