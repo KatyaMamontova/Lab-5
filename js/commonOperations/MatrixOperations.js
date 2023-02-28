@@ -15,7 +15,7 @@ class MatrixOperations {
       let result = new Array(A.length).fill(0).map(row => new Array(B[0].length).fill(0));
       return result.map((row, i) => {
         return row.map((val, j) => {
-          return A[i].reduce((sum, elem, k) => this.round(sum + (elem * B[k][j])), 0)
+          return A[i].reduce((sum, elem, k) => /*this.round*/(sum + (elem * B[k][j])), 0)
         })
       })
     }
@@ -24,7 +24,7 @@ class MatrixOperations {
       let result = new Array(b.length).fill(0);
       return result.map((row, i) => {
         return A[i].reduce((sum, elem, k) => {
-          return this.round(sum + (elem * b[k]))
+          return /*this.round*/(sum + (elem * b[k]))
         }, 0)
       })
     }

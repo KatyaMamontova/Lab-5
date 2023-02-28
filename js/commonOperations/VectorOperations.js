@@ -1,7 +1,7 @@
 class VectorOperations {
     constructor() { }
 
-    round = num => Math.round(num * 100) / 100;
+    //round = num => Math.round(num * 100) / 100;
 
     createZeroVector(size) {
         return new Array(size).fill(0);

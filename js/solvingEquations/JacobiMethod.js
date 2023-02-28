@@ -2,7 +2,7 @@ class JacobiMethod {
     constructor() {
         this.matrOperations = new MatrixOperations();
         this.vectOperations = new VectorOperations();
-        this.round = this.matrOperations.round;
+        /*this.round = this.matrOperations.round;*/
     }
 
     /* setEps(eps) {
@@ -15,8 +15,8 @@ class JacobiMethod {
 
         for (let i = 0; i < n; i++) {
             for (let j = i + 1; j < n; j++) {
-                B[i][j] = - this.round(A[i][j] / A[i][i]);
-                B[j][i] = - this.round(A[j][i] / A[j][j]);
+                B[i][j] = - /*this.round*/(A[i][j] / A[i][i]);
+                B[j][i] = - /*this.round*/(A[j][i] / A[j][j]);
             }
         }
         return B;
@@ -27,7 +27,7 @@ class JacobiMethod {
         let d = this.vectOperations.createZeroVector(n);
 
         for (let i = 0; i < n; i++)
-            d[i] = this.round(b[i] / A[i][i])
+            d[i] = /*this.round*/(b[i] / A[i][i])
 
         return d;
     }
@@ -72,7 +72,7 @@ class JacobiMethod {
             norm = this.defineNorm(x1, x0);
         }
 
-        return x1.map(val => this.round(val))
+        return x1.map(val => /*this.round*/(val))
     }
 
     output(A, b, eps) {
@@ -82,5 +82,23 @@ class JacobiMethod {
         console.log(`eps = ${eps}`);
 
         console.log('___x___\n', this.solveTheEquation(A, b, eps));
+    }
+
+    //TODO сделать общим для обоих методов решения
+    check(A, b, x) {
+        let forCheck = this.matrOperations.multiplyMatrixByVector(A, x).map(val => Math.round(val));
+        console.log(forCheck)
+        console.log(b)
+        return (!(b > forCheck || b < forCheck));
+    }
+
+    // "Для сходимости итерационного метода Якоби необходимо и достаточно, чтобы все корни уравнения по модулю не превосходили единицы"
+    // https://intuit.ru/studies/courses/1012/168/lecture/4592?page=7&ysclid=leoc707cog495599831
+
+    checkConvergenceConditions(x) {
+        x.map(val => {
+            if (Math.abs(val) > 1) return false;
+        })
+        return true;
     }
 }

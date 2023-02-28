@@ -17,10 +17,13 @@ this.window.onload = () => {
   //let b = [2, 5, 13];
   let b = [1, 2, 3, 4, 5];
 
-  let eps = 0.0001;
+  let eps = 1e-4;
 
   const squareRootMethod = new SquareRootMethod();
-  squareRootMethod.output(A, b)
   const jacobiMethod = new JacobiMethod();
+  squareRootMethod.output(A, b)
+  console.log(jacobiMethod.check(A, b, squareRootMethod.solveTheEquation(A, b)));
   jacobiMethod.output(A, b, eps)
+  console.log(jacobiMethod.check(A, b, jacobiMethod.solveTheEquation(A, b, eps)));
+  console.log(jacobiMethod.checkConvergenceConditions(jacobiMethod.solveTheEquation(A, b, eps)));
 }
