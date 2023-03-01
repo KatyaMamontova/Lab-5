@@ -1,9 +1,4 @@
-class JacobiMethod {
-    constructor() {
-        this.matrOperations = new MatrixOperations();
-        this.vectOperations = new VectorOperations();
-        /*this.round = this.matrOperations.round;*/
-    }
+class JacobiMethod extends Method {
 
     /* setEps(eps) {
         this.eps = eps;
@@ -84,14 +79,6 @@ class JacobiMethod {
         console.log('___x___\n', this.solveTheEquation(A, b, eps));
     }
 
-    //TODO сделать общим для обоих методов решения
-    check(A, b, x) {
-        let forCheck = this.matrOperations.multiplyMatrixByVector(A, x).map(val => Math.round(val));
-        console.log(forCheck)
-        console.log(b)
-        return (!(b > forCheck || b < forCheck));
-    }
-
     // "Для сходимости итерационного метода Якоби необходимо и достаточно, чтобы все корни уравнения по модулю не превосходили единицы"
     // https://intuit.ru/studies/courses/1012/168/lecture/4592?page=7&ysclid=leoc707cog495599831
 
@@ -101,4 +88,9 @@ class JacobiMethod {
         })
         return true;
     }
+
+    // если норма матрицы В меньше 1 - еще одно условие сходимости
+    // https://ru.wikipedia.org/wiki/Метод_Якоби#Условие_сходимости
+    // ...а которая норма
+
 }
