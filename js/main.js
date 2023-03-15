@@ -1,6 +1,8 @@
 //node lab#5
 this.window.onload = () => {
 
+  const ui = new UI()
+
   let k = 28; m = 9;
 
   let A = [
@@ -18,12 +20,4 @@ this.window.onload = () => {
   let b = [1, 2, 3, 4, 5];
 
   let eps = 1e-4;
-
-  const squareRootMethod = new SquareRootMethod();
-  const jacobiMethod = new JacobiMethod();
-  squareRootMethod.output(A, b)
-  console.log(jacobiMethod.check(A, b, squareRootMethod.solveTheEquation(A, b)));
-  jacobiMethod.output(A, b, eps)
-  console.log(jacobiMethod.check(A, b, jacobiMethod.solveTheEquation(A, b, eps)));
-  console.log(jacobiMethod.checkConvergenceConditions(jacobiMethod.solveTheEquation(A, b, eps)));
 }
