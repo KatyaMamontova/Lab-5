@@ -1,8 +1,7 @@
 class JacobiMethod extends Method {
-
-    /* setEps(eps) {
-        this.eps = eps;
-    } */
+    constructor() {
+        super()
+    }
 
     defineMatrixB(A) {
         let n = A[0].length;
@@ -10,8 +9,8 @@ class JacobiMethod extends Method {
 
         for (let i = 0; i < n; i++) {
             for (let j = i + 1; j < n; j++) {
-                B[i][j] = - /*this.round*/(A[i][j] / A[i][i]);
-                B[j][i] = - /*this.round*/(A[j][i] / A[j][j]);
+                B[i][j] = - (A[i][j] / A[i][i]);
+                B[j][i] = - (A[j][i] / A[j][j]);
             }
         }
         return B;
@@ -22,7 +21,7 @@ class JacobiMethod extends Method {
         let d = this.vectOperations.createZeroVector(n);
 
         for (let i = 0; i < n; i++)
-            d[i] = /*this.round*/(b[i] / A[i][i])
+            d[i] = (b[i] / A[i][i])
 
         return d;
     }
@@ -34,7 +33,6 @@ class JacobiMethod extends Method {
         for (let i = 0; i < n; i++) {
             for (let j = 0; j < n; j++) {
                 if (i != j) sum += Math.abs(B[i][j]);
-                //currentElem = sum / Math.abs(B[i][i]);
             }
             if (sum > q) q = sum;
             sum = 0;
@@ -67,7 +65,7 @@ class JacobiMethod extends Method {
             norm = this.defineNorm(x1, x0);
         }
 
-        return x1.map(val => /*this.round*/(val))
+        return x1.map(val => (val))
     }
 
     output(A, b, eps) {

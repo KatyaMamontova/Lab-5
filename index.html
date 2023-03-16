@@ -1,18 +1,45 @@
 <!DOCTYPE html>
 <html>
+
 <head>
     <meta charset='utf-8'>
     <meta http-equiv='X-UA-Compatible' content='IE=edge'>
     <title>Page Title</title>
     <meta name='viewport' content='width=device-width, initial-scale=1'>
+    <link rel="stylesheet" href="style.css">
     <script src='js/solvingEquations/Method.js'></script>
     <script src='js/commonOperations/VectorOperations.js'></script>
     <script src='js/commonOperations/MatrixOperations.js'></script>
+    <script src='js/ui/UI.js'></script>
     <script src='js/solvingEquations/SquareRootMethod.js'></script>
     <script src='js/solvingEquations/JacobiMethod.js'></script>
-    <script src='js/main.js'></script>
+    <script>
+        this.window.onload = () => { new UI() }
+    </script>
 </head>
+
 <body>
-    
+    <div class="wrap">
+        k:<input id="kInput" value="28">
+        m:<input id="mInput" value="9"> <br>
+        <button id="defineMatrixA">Составить матрицу А</button>
+        <p>Матрица А: </p>
+        <div id="matrixA"></div>
+    </div>
+    <div class="wrap">
+        <p>Свободные коэффициенты:</p>
+        <div id="vectorB"></div>
+    </div>
+    <div class="wrap">
+        <button id="squareMethodBtn">Решить систему методом квадратного корня</button>
+        <p>
+            <input id="epsInput" placeholder="eps">
+            <button id="jacobiBtn">Решить систему методом Якоби</button>
+        </p>
+        <div id="outputForAnswer">Ответ: </div>
+        <button id="checkBtn">Проверить</button>
+        <div id="outputForCheck"></div>
+    </div>
 </body>
+
 </html>

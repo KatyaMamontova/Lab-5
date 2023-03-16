@@ -1,4 +1,7 @@
 class SquareRootMethod extends Method {
+    constructor() {
+        super()
+    }
 
     defineMatrixT(givenMatrix) {
         let n = givenMatrix[0].length;
