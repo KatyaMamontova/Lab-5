@@ -6,6 +6,7 @@ class UI {
         this.squareRootMethod = new SquareRootMethod()
         this.A = null;
         this.b = [1, 2, 3, 4, 5];
+        //this.b = [2, 5, 13];
         this.eps = 0.0001;
         this.answer = 0;
         this.size = 2;
@@ -27,6 +28,9 @@ class UI {
             const k = document.getElementById('kInput').value - 0
             const m = document.getElementById('mInput').value - 0
             this.A = [
+                /* [-4, 1, 1],
+                [1, -9, 3],
+                [1, 2, -16] */
                 [12 + k, 2, m / 4, 1, 2],
                 [4, 113 + k, 1, m / 10, m - 4],
                 [1, 2, -24 - k, 3, 4],
@@ -61,7 +65,8 @@ class UI {
         if (method === 'squareMethod') {
             return this.squareRootMethod.solveTheEquation(this.A, this.b)
         } else if (method === 'Jacobi') {
-            this.eps = document.getElementById('epsInput')
+            const eps = document.getElementById('epsInput').value - 0
+            if (eps) this.eps = eps
             return this.jacobiMethod.solveTheEquation(this.A, this.b, this.eps)
         }
     }
