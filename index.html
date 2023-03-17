@@ -19,26 +19,29 @@
 </head>
 
 <body>
-    <div class="wrap">
-        k:<input id="kInput" value="28">
-        m:<input id="mInput" value="9"> <br>
-        <button id="defineMatrixA">Составить матрицу А</button>
-        <p>Матрица А: </p>
-        <div id="matrixA"></div>
-    </div>
-    <div class="wrap">
-        <p>Свободные коэффициенты:</p>
-        <div id="vectorB"></div>
-    </div>
-    <div class="wrap">
-        <button id="squareMethodBtn">Решить систему методом квадратного корня</button>
-        <p>
-            <input id="epsInput" placeholder="eps">
-            <button id="jacobiBtn">Решить систему методом Якоби</button>
-        </p>
-        <div id="outputForAnswer">Ответ: </div>
-        <button id="checkBtn">Проверить</button>
-        <div id="outputForCheck"></div>
+    <div>
+        <div class="wrap">
+            k:<input id="kInput" value="28">
+            m:<input id="mInput" value="9"> <br>
+            <button id="defineMatrixA"><b>Составить матрицу А</b></button>
+            <p>Матрица А: </p>
+            <div id="matrixA"></div>
+            <p>Свободные коэффициенты:</p>
+            <div id="vectorB"></div>
+        </div>
+        <div class="wrap">
+            <button id="squareMethodBtn"><b>Решить систему методом квадратного корня</b></button>
+            <p>
+                <input id="epsInput" placeholder="eps">
+                <button id="jacobiBtn"><b>Решить систему методом Якоби</b></button>
+            </p>
+        </div>
+        <div class="wrap">
+            <b><div id="outputForAnswer">Ответ: </div></b>
+            <button id="checkBtn">Проверить</button>
+            <button id="checkConvergenceBtn">Проверить диагональное преобладание матрицы А</button>
+            <div id="outputForCheck"></div>
+        </div>
     </div>
 </body>
 

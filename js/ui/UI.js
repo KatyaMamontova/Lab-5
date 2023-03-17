@@ -49,6 +49,11 @@ class UI {
             <p>Уравнение решено ${checking.isCorrect ? 'верно' : 'неверно'} </p>
             `
         })
+        document.getElementById('checkConvergenceBtn').addEventListener('click', () => {
+            document.getElementById('outputForCheck').innerHTML = `
+                <p>А - ${(this.jacobiMethod.checkConvergenceCondition(this.A)) ? '' : 'не '}матрица с диагональным преобладанием </p>
+            `
+        })
 
     }
 

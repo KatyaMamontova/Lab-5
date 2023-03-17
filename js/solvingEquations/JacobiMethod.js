@@ -64,7 +64,7 @@ class JacobiMethod extends Method {
             x1 = x2;
             norm = this.defineNorm(x1, x0);
         }
-
+        
         return x1
     }
 
@@ -77,8 +77,16 @@ class JacobiMethod extends Method {
         console.log('___x___\n', this.solveTheEquation(A, b, eps));
     }
 
-    checkConvergenceConditions(A) {
-        
+    checkConvergenceCondition(A) {
+        const n = A.length;
+
+        for (let i = 0; i < n; i++) {
+            let row = A[i];
+            let sum = row.reduce((sum, a, j) => (j != i) ? sum + a : sum, 0)
+            if (Math.abs(A[i][i]) < sum) return false;
+        }
+
+        return true;
     }
 
 }
